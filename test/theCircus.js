@@ -50,6 +50,7 @@ describe("IMDB Senarios - The Circus", () => {
     await yearButton.click();
   });
 
+  //If your pc is not in english this test step might fail
   it("Select The Circus (Charles Chaplin)", async () => {
     await page.waitForNavigation({ waitUntil: "networkidle0" });
     const [theCircusButton] = await page.$x("//img[@alt='The Circus']");
@@ -124,10 +125,10 @@ describe("IMDB Senarios - The Circus", () => {
     }
   });
 
-  //For some reason this page(Movie page) has 2 different UIs I could not allocate time to full understand it
-  //It seems totally random to me because It changes even in the same browser type, resolution
+  //For some reason, this page(Movie page) has 2 different UIs. I could not allocate time to fully understand it
+  //It seems totally random to me because It changes even in the same browser type and resolution
   //and it does not matter whether it is incognito or not
-  //After see that since I do not know whether it's meant to be that way or not I decided to test both UIs
+  //Since I do not know whether it's meant to be that way or not I decided to test both UIs
   it("Click on the Photo Gallery", async () => {
     await page.waitForTimeout(1000);
     const [seeAllPhotosButton] = await page.$x(
@@ -144,17 +145,6 @@ describe("IMDB Senarios - The Circus", () => {
     }
 
     await page.waitForNavigation({ waitUntil: "networkidle0" });
-    /*
-    const [nextButton] = await page.$x("//*[@id='right']/a");
-
-    await page.waitForTimeout(1000);
-    const corruptImage = await page.$x(
-      "//*[@id='media_index_thumbnail_grid']/a/img[@width='16']"
-    ); //a broken img has a 16x16 resolution
-    expect(corruptImage[0]).to.equal(undefined);
-    if (nextButton) {
-      nextButton.click();
-    }*/
 
     const [nextButton] = await page.$x(
       "//*[@id='right']/a[contains(text(),'Next&nbsp;»')]"
